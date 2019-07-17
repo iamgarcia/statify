@@ -24,6 +24,18 @@ body {
 
 .logo-img {
     margin: 7px;
+    fill: #FFFFFF;
+}
+
+.logo-img-out path {
+    transition-timing-function: ease-out;
+    transition: .5s;
+}
+
+.logo-img:hover path {
+    transition-timing-function: ease-in;
+    transition: .5s;
+    fill: #1ED760;
 }
 
 @media only screen and (max-width: 600px) {
@@ -34,6 +46,15 @@ body {
 
 .darkNav {
     background: rgba(0, 0, 0, .75);
+}
+
+.menu-items {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.menu-items:hover {
+    color: #1ED760;
 }
 
 .login-container {
