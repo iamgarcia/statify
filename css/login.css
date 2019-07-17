@@ -27,3 +27,9 @@ body {
     background-color: black;
     opacity: .75;
 }
+
+.login-btn {
+    width: 250px;
+    display:block;
+    margin: 0 auto;
+}
