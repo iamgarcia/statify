@@ -95,3 +95,7 @@ body {
 .login-btn:hover {
     background-color: #1ED760;
 }
+
+.material-icons {
+    font-size: inherit;
+}
