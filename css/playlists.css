@@ -1,4 +1,112 @@
+header,
+main,
+footer {
+    padding-left: 100px;
+}
+
+@media only screen and (max-width : 992px) {
+
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
+}
+
 body {
     background-color: #181818;
     font-family: 'Montserrat', sans-serif;
+}
+
+.sidenav-dark {
+    background-color: #000000;
+}
+
+.user-view {
+    text-align: center;
+}
+
+.logo-container {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+}
+
+.logo path {
+    transition-timing-function: ease-out;
+    transition: .3s;
+}
+
+.logo:hover path {
+    transition-timing-function: ease-in;
+    transition: .3s;
+    fill: #1ED760;
+}
+
+.side-menu {
+    margin-top: 300px;
+}
+
+i.icon-green {
+    color: #1DB954;
+}
+
+i.icon-color {
+    color: #9B9B9B;
+    transition-timing-function: ease-out;
+    transition: .2s;
+}
+
+.flip-icon {
+    transform: scaleX(-1);
+}
+
+.parent-tab {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-timing-function: ease-out;
+    transition: .1s;
+}
+
+.parent-tab:hover {
+    border-left: 5px solid #1DB954;
+    background-color: #181818;
+    transition-timing-function: ease-in;
+    transition: .1s;   
+}
+
+.child-icon {
+    display: grid;
+    place-items: center;
+}
+
+.parent-tab:hover > .icon-color {
+    color: #FFFFFF;
+    transition-timing-function: ease-in;
+    transition: .2s;
+}
+
+.child-title {
+    display: grid;
+    place-items: center;
+    line-height: 1.4!important;
+    font-size: .75rem;
+    font-weight: bolder!important;
+    margin: 0;
+    margin-top: .5rem;
+    color: #9B9B9B;
+    transition-timing-function: ease-out;
+    transition: .2s;
+}
+
+.parent-tab:hover > .child-title {
+    color: #FFFFFF;
+    transition-timing-function: ease-in;
+    transition: .2s;
 }
