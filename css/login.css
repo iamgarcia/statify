@@ -22,17 +22,16 @@ body {
     }
 }
 
-.logo-img {
+.logo {
     margin: 7px;
-    fill: #FFFFFF;
 }
 
-.logo-img-out path {
+.logo path {
     transition-timing-function: ease-out;
     transition: .3s;
 }
 
-.logo-img:hover path {
+.logo:hover path {
     transition-timing-function: ease-in;
     transition: .3s;
     fill: #1ED760;
@@ -112,4 +111,8 @@ body {
 
 i.icon-white {
     color: white!important;
+}
+
+.divider-gray {
+    background-color: #2d2d2d!important;
 }
