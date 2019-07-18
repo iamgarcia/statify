@@ -4,7 +4,7 @@ html {
 
 body {
     background-color: #181818;
-    background-image: url('../images/login-background.jpg');
+    background-image: url('../images/login-background2.jpg');
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
@@ -29,12 +29,12 @@ body {
 
 .logo-img-out path {
     transition-timing-function: ease-out;
-    transition: .5s;
+    transition: .3s;
 }
 
 .logo-img:hover path {
     transition-timing-function: ease-in;
-    transition: .5s;
+    transition: .3s;
     fill: #1ED760;
 }
 
@@ -45,16 +45,20 @@ body {
 }
 
 .darkNav {
-    background: rgba(0, 0, 0, .75);
+    background: rgba(0, 0, 0, .60);
 }
 
 .menu-items {
-    color: #FFFFFF;
+    color: #FFFFFF!important;
     font-weight: bold;
+    transition-timing-function: ease-out;
+    transition: .3s;
 }
 
 .menu-items:hover {
-    color: #1ED760;
+    color: #1ED760!important;
+    transition-timing-function: ease-in;
+    transition: .3s;
 }
 
 .login-container {
@@ -98,4 +102,14 @@ body {
 
 .material-icons {
     font-size: inherit;
+}
+
+.sidenav {
+    background-color: #181818;
+    color: white;
+    font-weight: bold;
+}
+
+i.icon-white {
+    color: white!important;
 }
