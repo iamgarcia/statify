@@ -76,9 +76,9 @@ i.icon-color {
     transition: .1s;
 }
 
-.parent-tab:hover {
+.parent-tab:hover, .active {
     border-left: 5px solid #1DB954;
-    background-color: #181818;
+    background-color: #181818!important;
     transition-timing-function: ease-in;
     transition: .1s;   
 }
