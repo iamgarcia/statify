@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Statify - Profile</title>
+    <title>Statify - Recent</title>
 
     <!--Set favicon-->
     <link rel='shortcut icon' href='../favicon/spotify.ico' type='image/x-icon' />
@@ -18,8 +18,8 @@
     <!--Import Google Montserrat Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
-    <!--Import profile.css-->
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/profile.css">
+    <!--Import recents.css-->
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/recent.css">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,8 +42,8 @@
             </div>
         </li>
         <div class="side-menu">
-            <a href="#">
-                <li class="parent-tab waves-effect waves-dark active">
+            <a href="../templates/profile.html">
+                <li class="parent-tab waves-effect waves-dark">
                     <i class="child-icon material-icons icon-color">person</i>
                     <p class="child-title">Profile</p>
                 </li>
@@ -54,14 +54,14 @@
                     <p class="child-title">Top Artists</p>
                 </li>
             </a>
-            <a href="#">
+            <a href="../templates/tracks.html">
                 <li class="parent-tab waves-effect waves-dark">
                     <i class="child-icon material-icons icon-color">music_note</i>
                     <p class="child-title">Top Tracks</p>
                 </li>
             </a>
             <a href="../templates/recent.html">
-                <li class="parent-tab waves-effect waves-dark">
+                <li class="parent-tab waves-effect waves-dark active">
                     <i class="child-icon material-icons icon-color flip-icon">update</i>
                     <p class="child-title">Recent</p>
                 </li>
@@ -78,7 +78,7 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script src="../js/materialize.min.js"></script>
-    <script src="../js/profile.js"></script>
+    <script src="../js/recent.js"></script>
 </body>
 
 </html>
