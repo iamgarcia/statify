@@ -40,17 +40,17 @@ class ProfilePage(webapp2.RequestHandler):
     def post(self):
         pass
 
-class TopArtistsPage(webapp2.RequestHandler):
+class ArtistsPage(webapp2.RequestHandler):
     def get(self):
-        top_artists_template = the_jinja_env.get_template('templates/top_artists.html')
+        top_artists_template = the_jinja_env.get_template('templates/artists.html')
         self.response.write(top_artists_template.render())  # the response
 
     def post(self):
         pass
 
-class TopTracksPage(webapp2.RequestHandler):
+class TracksPage(webapp2.RequestHandler):
     def get(self):
-        index_template = the_jinja_env.get_template('templates/top_tracks.html')
+        index_template = the_jinja_env.get_template('templates/tracks.html')
         self.response.write(index_template.render())  # the response
 
     def post(self):
@@ -58,7 +58,7 @@ class TopTracksPage(webapp2.RequestHandler):
     
 class RecentsPage(webapp2.RequestHandler):
     def get(self):
-        recents_template = the_jinja_env.get_template('templates/recents.html')
+        recents_template = the_jinja_env.get_template('templates/recent.html')
         self.response.write(recents_template.render())  # the response
 
     def post(self):
@@ -75,8 +75,8 @@ class PlaylistsPage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
     ('/profile', ProfilePage),
-    ('/topartists', TopArtistsPage),
-    ('/toptracks', TopTracksPage),
-    ('/recents', RecentsPage),
+    ('/artists', ArtistsPage),
+    ('/tracks', TracksPage),
+    ('/recent', RecentsPage),
     ('/playlists', PlaylistsPage)
 ], debug=True)
