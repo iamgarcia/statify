@@ -72,11 +72,56 @@ class PlaylistsPage(webapp2.RequestHandler):
     def post(self):
         pass
 
+class AboutPage(webapp2.RequestHandler):
+    def get(self):
+        playlists_template = the_jinja_env.get_template('templates/about.html')
+        self.response.write(playlists_template.render())  # the response
+
+    def post(self):
+        pass
+
+class FeaturesPage(webapp2.RequestHandler):
+    def get(self):
+        features_template = the_jinja_env.get_template('templates/features.html')
+        self.response.write(features_template.render())  # the response
+
+    def post(self):
+        pass
+
+class ContactPage(webapp2.RequestHandler):
+    def get(self):
+        contact_template = the_jinja_env.get_template('templates/contact.html')
+        self.response.write(contact_template.render())  # the response
+
+    def post(self):
+        pass
+
+class PrivacyPage(webapp2.RequestHandler):
+    def get(self):
+        privacy_template = the_jinja_env.get_template('templates/privacy.html')
+        self.response.write(privacy_template.render())  # the response
+
+    def post(self):
+        pass
+
+class OSLPage(webapp2.RequestHandler):
+    def get(self):
+        osl_template = the_jinja_env.get_template('templates/osl.html')
+        self.response.write(osl_template.render())  # the response
+
+    def post(self):
+        pass
+
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
     ('/profile', ProfilePage),
     ('/artists', ArtistsPage),
     ('/tracks', TracksPage),
     ('/recent', RecentPage),
-    ('/playlists', PlaylistsPage)
+    ('/playlists', PlaylistsPage),
+    ('/about', AboutPage),
+    ('/features', FeaturesPage),
+    ('/contact', ContactPage),
+    ('/privacy', PrivacyPage),
+    ('/osl', OSLPage)
 ], debug=True)
