@@ -48,7 +48,7 @@ body {
 }
 
 .side-menu {
-    margin-top: 300px;
+    margin-top: 125px;
 }
 
 i.icon-green {
@@ -78,9 +78,28 @@ i.icon-color {
 
 .parent-tab:hover {
     border-left: 5px solid #1DB954;
-    background-color: #181818;
+    background-color: #181818!important;
     transition-timing-function: ease-in;
     transition: .1s;   
+}
+
+.active > .parent-tab {
+    border-left: 5px solid #1DB954;
+    background-color: #181818!important;
+    transition-timing-function: ease-in;
+    transition: .1s;
+}
+
+.active > .parent-tab > .icon-color {
+    color: #FFFFFF;
+    transition-timing-function: ease-in;
+    transition: .2s;
+}
+
+.active > .parent-tab > .child-title {
+    color: #FFFFFF;
+    transition-timing-function: ease-in;
+    transition: .2s;
 }
 
 .child-icon {
