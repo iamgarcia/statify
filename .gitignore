@@ -5,3 +5,4 @@ spotipy.pyc
 __pycache__
 spotipy
 examples
+.vscode/
