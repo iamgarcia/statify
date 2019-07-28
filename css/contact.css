@@ -3,12 +3,7 @@ html {
 }
 
 body {
-    background-color: #181818;
-    background-image: url('../images/login-background2.jpg');
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #FFFFFF;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -95,4 +90,10 @@ i.icon-white {
 
 .divider-gray {
     background-color: #2d2d2d!important;
+}
+
+.hero-banner {
+    height: 300px;
+    width: auto;
+    background-color: #1A8FE3;
 }
