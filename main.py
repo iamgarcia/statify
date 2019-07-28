@@ -72,14 +72,6 @@ class PlaylistsPage(webapp2.RequestHandler):
     def post(self):
         pass
 
-class AboutPage(webapp2.RequestHandler):
-    def get(self):
-        playlists_template = the_jinja_env.get_template('templates/about.html')
-        self.response.write(playlists_template.render())  # the response
-
-    def post(self):
-        pass
-
 class FeaturesPage(webapp2.RequestHandler):
     def get(self):
         features_template = the_jinja_env.get_template('templates/features.html')
@@ -119,7 +111,6 @@ app = webapp2.WSGIApplication([
     ('/tracks', TracksPage),
     ('/recent', RecentPage),
     ('/playlists', PlaylistsPage),
-    ('/about', AboutPage),
     ('/features', FeaturesPage),
     ('/contact', ContactPage),
     ('/privacy', PrivacyPage),
