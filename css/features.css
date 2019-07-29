@@ -84,6 +84,10 @@ body {
     font-weight: bold;
 }
 
+i.icon-white {
+    color: #FFFFFF!important;
+}
+
 i.icon-color {
     color: #FF8552!important;
 }
@@ -93,10 +97,10 @@ i.icon-color {
 }
 
 .hero-container {
-    height: 300px;
+    height: 250px;
     width: auto;
     background-color: #FF8552;
-    line-height: 300px;
+    line-height: 250px;
     text-align: center;
 }
 
