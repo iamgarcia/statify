@@ -84,8 +84,8 @@ body {
     font-weight: bold;
 }
 
-i.icon-white {
-    color: white!important;
+i.icon-color {
+    color: #1A8FE3!important;
 }
 
 .divider-gray {
@@ -106,4 +106,15 @@ i.icon-white {
     font-size: 4em;
     font-weight: 900;
     color: #FFFFFF;
+}
+
+.content {
+    margin-top: 5em;
+}
+
+.promo-caption {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
