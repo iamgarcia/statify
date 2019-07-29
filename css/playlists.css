@@ -23,8 +23,8 @@ body {
 }
 
 .logo-container {
-    height: 100px;
-    width: 100px;
+    height: auto;
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,11 @@ body {
 }
 
 .side-menu {
-    margin-top: 125px;
+    /* new */
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 1fr;
+    grid-gap: 5%;
 }
 
 i.icon-green {
@@ -66,8 +70,8 @@ i.icon-color {
 }
 
 .parent-tab {
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,6 +85,15 @@ i.icon-color {
     background-color: #181818!important;
     transition-timing-function: ease-in;
     transition: .1s;   
+}
+
+.active {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .active > .parent-tab {
@@ -130,4 +143,10 @@ i.icon-color {
     color: #FFFFFF;
     transition-timing-function: ease-in;
     transition: .2s;
+}
+
+#slide-out {
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-columns: 1fr;
 }
