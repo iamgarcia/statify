@@ -43,14 +43,14 @@ body {
 }
 
 .menu-items {
-    color: #FFFFFF!important;
+    color: #FFFFFF !important;
     font-weight: bold;
     transition-timing-function: ease-out;
     transition: .3s;
 }
 
 .menu-items:hover {
-    color: #1ED760!important;
+    color: #1ED760 !important;
     transition-timing-function: ease-in;
     transition: .3s;
 }
@@ -85,18 +85,18 @@ body {
 }
 
 i.icon-white {
-    color: white!important;
+    color: white !important;
 }
 
 .divider-gray {
-    background-color: #2d2d2d!important;
+    background-color: #2d2d2d !important;
 }
 
 .hero-container {
-    height: 250px;
+    height: 175px;
     width: auto;
     background-color: #1A8FE3;
-    line-height: 250px;
+    line-height: 175px;
     text-align: center;
 }
 
@@ -106,4 +106,58 @@ i.icon-white {
     font-size: 4em;
     font-weight: 900;
     color: #FFFFFF;
+}
+
+.twitter {
+    background-color: #1DA1F2;
+    text-align: center;
+}
+
+.discord {
+    background-color: #7289DA;
+    text-align: center;
+}
+
+.linked-in {
+    background-color: #0077B5;
+    text-align: center;
+}
+
+.facebook {
+    background-color: #3C5A99;
+    text-align: center;
+}
+
+.instagram {
+    background-color: #BC2A8D;
+    text-align: center;
+}
+
+.youtube {
+    background-color: #FF0000;
+    text-align: center;
+}
+
+.col {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-top: 12px !important;
+    padding-bottom: 0px !important;
+}
+
+.col-social {
+    padding-top: 0px !important;
+}
+
+.row {
+    margin-bottom: 0;
+}
+
+.contact-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.hero-color {
+    background-color: #1A8FE3;
 }

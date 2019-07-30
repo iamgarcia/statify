@@ -150,3 +150,11 @@ i.icon-color {
     grid-template-rows: 1fr 5fr 1fr;
     grid-template-columns: 1fr;
 }
+
+.content {
+    padding-left: 100px;
+    height: auto;
+    width: auto;
+    text-align: center;
+    color: #FFFFFF;
+}
