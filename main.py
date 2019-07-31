@@ -27,7 +27,9 @@ the_jinja_env = jinja2.Environment(
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         login_template = the_jinja_env.get_template('templates/login.html')
-        self.response.write(login_template.render())  # the response
+        token_url = r"https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3D6e1c71fa7d494c1db9a1e02dff1351ef%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fstatify-app.appspot.com%252Fprofile%26scope%3Duser-top-read"
+        new_dict = {'token_url': token_url}
+        self.response.write(login_template.render(new_dict))  # the response
 
     def post(self):
         pass
