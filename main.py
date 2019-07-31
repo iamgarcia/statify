@@ -16,6 +16,10 @@ import webapp2
 import jinja2
 import os
 
+#need a global token var
+token = ''
+
+
 # This initializes the jinja2 Environment.
 # This will be the same in every app that uses the jinja2 templating library.
 the_jinja_env = jinja2.Environment(
@@ -27,7 +31,12 @@ the_jinja_env = jinja2.Environment(
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         login_template = the_jinja_env.get_template('templates/login.html')
-        self.response.write(login_template.render())  # the response
+        # mutian url: https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3Dd1043c275ddc4f64a60b2438db8ef839%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fnew-statify-app.appspot.com%252Fprofile%26scope%3Duser-top-read
+        # alex url: https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3D6e1c71fa7d494c1db9a1e02dff1351ef%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fstatify-app.appspot.com%252Fprofile%26scope%3Duser-top-read
+        token_url = r"https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3Dd1043c275ddc4f64a60b2438db8ef839%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fnew-statify-app.appspot.com%252Fprofile%26scope%3Duser-top-read"
+        # self.request.url gets current url
+        new_dict = {'token_url': token_url}
+        self.response.write(login_template.render(new_dict))  # the response
 
     def post(self):
         pass
@@ -35,7 +44,17 @@ class LoginPage(webapp2.RequestHandler):
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
         profile_template = the_jinja_env.get_template('templates/profile.html')
-        self.response.write(profile_template.render())  # the response
+
+        current_url = self.request.url
+        token = current_url[49:]
+        # songs = get_songs(token)
+        test_dict = {"current_url": 'this is a test'}
+        new_dict = {"current_url": token}
+
+        if current_url == "https://new-statify-app.appspot.com/profile":
+            self.response.write(profile_template.render(test_dict))  # without oauth token response
+        else:
+            self.response.write(profile_template.render(new_dict)) # with oauth token response
 
     def post(self):
         pass
