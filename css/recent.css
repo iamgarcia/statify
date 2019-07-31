@@ -150,3 +150,17 @@ i.icon-color {
     grid-template-rows: 1fr 5fr 1fr;
     grid-template-columns: 1fr;
 }
+
+.recent-header {
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.recently-played-container {
+    margin-top: 50px;
+}
+
+li {
+    margin-top: 15px;
+}
