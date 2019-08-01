@@ -6,6 +6,7 @@ import sys
 import requests
 import json
 import time
+from google.appengine.api import urlfetch
 
 ''' A simple and thin Python library for the Spotify Web API
 '''
@@ -105,36 +106,38 @@ class Spotify(object):
 
         if self.trace_out:
             print(url)
-        r = self._session.request(method, url, headers=headers, proxies=self.proxies, **args)
+        # r = self._session.request(method, url, headers=headers, proxies=self.proxies, **args)
+        r = urlfetch.fetch(url=url, payload=args, method=urlfetch.GET, headers=headers)
+        j = json.loads(r.content)
+        return j
+        # if self.trace:  # pragma: no cover
+        #     print()
+        #     print ('headers', headers)
+        #     print ('http status', r.status_code)
+        #     print(method, r.url)
+        #     if payload:
+        #         print("DATA", json.dumps(payload))
 
-        if self.trace:  # pragma: no cover
-            print()
-            print ('headers', headers)
-            print ('http status', r.status_code)
-            print(method, r.url)
-            if payload:
-                print("DATA", json.dumps(payload))
-
-        try:
-            r.raise_for_status()
-        except:
-            if r.text and len(r.text) > 0 and r.text != 'null':
-                raise SpotifyException(r.status_code,
-                    -1, '%s:\n %s' % (r.url, r.json()['error']['message']),
-                    headers=r.headers)
-            else:
-                raise SpotifyException(r.status_code,
-                    -1, '%s:\n %s' % (r.url, 'error'), headers=r.headers)
-        finally:
-            r.connection.close()
-        if r.text and len(r.text) > 0 and r.text != 'null':
-            results = r.json()
-            if self.trace:  # pragma: no cover
-                print('RESP', results)
-                print()
-            return results
-        else:
-            return None
+        # try:
+        #     r.raise_for_status()
+        # except:
+        #     if r.text and len(r.text) > 0 and r.text != 'null':
+        #         raise SpotifyException(r.status_code,
+        #             -1, '%s:\n %s' % (r.url, r.json()['error']['message']),
+        #             headers=r.headers)
+        #     else:
+        #         raise SpotifyException(r.status_code,
+        #             -1, '%s:\n %s' % (r.url, 'error'), headers=r.headers)
+        # finally:
+        #     r.connection.close()
+        # if r.text and len(r.text) > 0 and r.text != 'null':
+        #     results = r.json()
+        #     if self.trace:  # pragma: no cover
+        #         print('RESP', results)
+        #         print()
+        #     return results
+        # else:
+        #     return None
 
     def _get(self, url, args=None, payload=None, **kwargs):
         if args:
