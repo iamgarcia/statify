@@ -15,8 +15,19 @@
 import webapp2
 import jinja2
 import os
+import spotipy
+from spotipy import util
 
-#need a global token var
+def get_songs(token):
+    sp = spotipy.Spotify(auth=token)
+    top_tracks = sp.current_user_top_tracks(limit=10, time_range='short_term')
+    for item in top_tracks['items']:
+        song_length = sp.track(item['uri'][-22:])['duration_ms']
+        song_length = round(song_length/60000, 2)
+        songs = {'name': item['name'], 'artists': item['artists'][0]['name'], 'album_title': item['album']['name'], 'song_length': song_length}
+    return songs
+
+# declare a global token var
 token = ''
 
 
@@ -47,8 +58,8 @@ class ProfilePage(webapp2.RequestHandler):
 
         current_url = self.request.url
         token = current_url[49:]
-        # songs = get_songs(token)
-        test_dict = {"current_url": 'this is a test'}
+        #songs = get_songs(token)
+        test_dict = {"current_url": 'this is a test'}   
         new_dict = {"current_url": token}
 
         if current_url == "https://new-statify-app.appspot.com/profile":
