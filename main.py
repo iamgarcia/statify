@@ -20,11 +20,14 @@ import spotipy
 from spotipy import util
 from spotipy import oauth2
 
+# declare global vars for use later
+songs = []
+albums = []
+
 def get_songs(token):
     songs = []
     sp = spotipy.Spotify(auth=token)
     top_tracks = sp.current_user_top_tracks(limit=10, time_range='long_term')
-    return top_tracks
     for item in top_tracks['items']:
         song_length = sp.track(item['uri'][-22:])['duration_ms']
         song_length = round(song_length/60000, 2)
@@ -61,18 +64,15 @@ class LoginPage(webapp2.RequestHandler):
 
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
+        global songs
         profile_template = the_jinja_env.get_template('templates/profile.html')
 
         current_url = self.request.url
         token = get_token(current_url)
         songs = get_songs(token)
-        # token = current_url[49:]
-        test_dict = {"current_url": 'this is a test'}
-        new_dict = {"current_url": current_url, "songs": songs}
-        if current_url == "https://new-statify-app.appspot.com/profile":
-            self.response.write(profile_template.render(test_dict))  # without oauth token response
-        else:
-            self.response.write(profile_template.render(new_dict)) # with oauth token response
+        new_dict = {'songs': songs}
+
+        self.response.write(profile_template.render(new_dict)) # the response
 
     def post(self):
         pass
@@ -95,8 +95,16 @@ class TracksPage(webapp2.RequestHandler):
     
 class RecentPage(webapp2.RequestHandler):
     def get(self):
+        global songs
+        new_dict = {}
+        for i in range(len(songs)):
+            new_dict["song{}".format(i+1)] = songs[i]['name']
+            new_dict["artist{}".format(i+1)] = songs[i]['artists']
+            new_dict["album{}".format(i+1)] = songs[i]['album_title']
+
         recent_template = the_jinja_env.get_template('templates/recent.html')
-        self.response.write(recent_template.render())  # the response
+
+        self.response.write(recent_template.render(new_dict))  # the response
 
     def post(self):
         pass
