@@ -3,5 +3,7 @@ secret.pyc
 main.pyc
 spotipy.pyc
 __pycache__
+appengine_config.pyc
 examples
 .vscode/
+lib/
