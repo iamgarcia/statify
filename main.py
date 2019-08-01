@@ -12,23 +12,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import print_function
 import webapp2
 import jinja2
 import os
 import spotipy
 from spotipy import util
+from spotipy import oauth2
 
 def get_songs(token):
+    songs = []
     sp = spotipy.Spotify(auth=token)
-    top_tracks = sp.current_user_top_tracks(limit=10, time_range='short_term')
+    top_tracks = sp.current_user_top_tracks(limit=10, time_range='long_term')
     for item in top_tracks['items']:
         song_length = sp.track(item['uri'][-22:])['duration_ms']
         song_length = round(song_length/60000, 2)
-        songs = {'name': item['name'], 'artists': item['artists'][0]['name'], 'album_title': item['album']['name'], 'song_length': song_length}
+        songs += [{'name': item['name'], 'artists': item['artists'][0]['name'], 'album_title': item['album']['name'], 'song_length': song_length}]
     return songs
 
-# declare a global token var
-token = ''
+def get_token(current_url):
+    sp_oauth = oauth2.SpotifyOAuth('d1043c275ddc4f64a60b2438db8ef839', 'fe8389b1944e44199785a6607fc68da4', 'https://new-statify-app.appspot.com/profile', scope='user-top-read')
+    code = sp_oauth.parse_response_code(current_url)
+    token_info = sp_oauth.get_access_token(code)
+    return token
+    if token_info:
+        return token_info['access_token']
+    else:
+        return None
 
 
 # This initializes the jinja2 Environment.
@@ -44,7 +54,7 @@ class LoginPage(webapp2.RequestHandler):
         login_template = the_jinja_env.get_template('templates/login.html')
         # mutian url: https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3Dd1043c275ddc4f64a60b2438db8ef839%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fnew-statify-app.appspot.com%252Fprofile%26scope%3Duser-top-read
         # alex url: https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3D6e1c71fa7d494c1db9a1e02dff1351ef%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fstatify-app.appspot.com%252Fprofile%26scope%3Duser-top-read
-        token_url = r"https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3Dd1043c275ddc4f64a60b2438db8ef839%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fnew-statify-app.appspot.com%252Fprofile%26scope%3Duser-top-read"
+        token_url = "https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3Dd1043c275ddc4f64a60b2438db8ef839%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fnew-statify-app.appspot.com%252Fprofile%26scope%3Duser-top-read"
         # self.request.url gets current url
         new_dict = {'token_url': token_url}
         self.response.write(login_template.render(new_dict))  # the response
@@ -57,11 +67,11 @@ class ProfilePage(webapp2.RequestHandler):
         profile_template = the_jinja_env.get_template('templates/profile.html')
 
         current_url = self.request.url
-        token = current_url[49:]
-        #songs = get_songs(token)
-        test_dict = {"current_url": 'this is a test'}   
-        new_dict = {"current_url": token}
-
+        token = get_token(current_url)
+        # songs = get_songs(token)
+        # token = current_url[49:]
+        test_dict = {"current_url": 'this is a test'}
+        new_dict = {"current_url": current_url, "songs": token}
         if current_url == "https://new-statify-app.appspot.com/profile":
             self.response.write(profile_template.render(test_dict))  # without oauth token response
         else:
