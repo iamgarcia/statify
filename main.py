@@ -24,6 +24,7 @@ def get_songs(token):
     songs = []
     sp = spotipy.Spotify(auth=token)
     top_tracks = sp.current_user_top_tracks(limit=10, time_range='long_term')
+    return top_tracks
     for item in top_tracks['items']:
         song_length = sp.track(item['uri'][-22:])['duration_ms']
         song_length = round(song_length/60000, 2)
@@ -33,12 +34,8 @@ def get_songs(token):
 def get_token(current_url):
     sp_oauth = oauth2.SpotifyOAuth('d1043c275ddc4f64a60b2438db8ef839', 'fe8389b1944e44199785a6607fc68da4', 'https://new-statify-app.appspot.com/profile', scope='user-top-read')
     code = sp_oauth.parse_response_code(current_url)
-    token_info = sp_oauth.get_access_token(code)
-    return token
-    if token_info:
-        return token_info['access_token']
-    else:
-        return None
+    access_token = sp_oauth.get_access_token(code)
+    return access_token
 
 
 # This initializes the jinja2 Environment.
@@ -68,10 +65,10 @@ class ProfilePage(webapp2.RequestHandler):
 
         current_url = self.request.url
         token = get_token(current_url)
-        # songs = get_songs(token)
+        songs = get_songs(token)
         # token = current_url[49:]
         test_dict = {"current_url": 'this is a test'}
-        new_dict = {"current_url": current_url, "songs": token}
+        new_dict = {"current_url": current_url, "songs": songs}
         if current_url == "https://new-statify-app.appspot.com/profile":
             self.response.write(profile_template.render(test_dict))  # without oauth token response
         else:

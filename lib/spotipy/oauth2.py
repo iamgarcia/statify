@@ -6,6 +6,8 @@ import os
 import json
 import time
 import sys
+import urllib
+from google.appengine.api import urlfetch
 
 # Workaround to support both python 2 & 3
 try:
@@ -211,14 +213,22 @@ class SpotifyOAuth(object):
             auth_header = base64.b64encode(self.client_id + ':' + self.client_secret)
             headers = {'Authorization': 'Basic %s' % auth_header}
 
-        response = requests.post(self.OAUTH_TOKEN_URL, data=payload,
-            headers=headers, verify=True, proxies=self.proxies)
-        if response.status_code is not 200:
-            raise SpotifyOauthError(response.reason)
-        token_info = response.json()
-        token_info = self._add_custom_values_to_token_info(token_info)
-        self._save_token_info(token_info)
-        return token_info
+        # response = requests.post(self.OAUTH_TOKEN_URL, data=payload,
+        #     headers=headers, verify=True, proxies=self.proxies)
+        payload = urllib.urlencode(payload)
+        response = urlfetch.fetch(url=self.OAUTH_TOKEN_URL, payload=payload, method=urlfetch.POST, headers=headers)
+        if response.status_code == 200:
+            j = json.loads(response.content)
+            return j.get('access_token')
+        else:
+            msg = "error"
+            return msg
+        # if response.status_code is not 200:
+        #     raise SpotifyOauthError(response.reason)
+        # token_info = response.json()
+        # token_info = self._add_custom_values_to_token_info(token_info)
+        # self._save_token_info(token_info)
+        # return token_info
 
     def _normalize_scope(self, scope):
         if scope:
