@@ -6,4 +6,3 @@ __pycache__
 appengine_config.pyc
 examples
 .vscode/
-lib/
