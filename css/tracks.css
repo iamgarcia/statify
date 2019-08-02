@@ -150,3 +150,65 @@ i.icon-color {
     grid-template-rows: 1fr 5fr 1fr;
     grid-template-columns: 1fr;
 }
+
+.recent-header {
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.track-container {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width: auto;
+}
+
+.track-artwork {
+    height: 50px;
+}
+
+.track-meta {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.meta-track-title {
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 20px;
+    float: left;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.meta-album-artist {
+    color: #9B9B9B;
+    margin-left: 20px;
+    float: left;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+
+}
+
+.meta-dot {
+    color: #9B9B9B;
+    margin-left: 5px;
+    float: left;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.meta-album-title {
+    color: #9B9B9B;
+    margin-left: 5px;
+    float: left;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.album-art {
+    height: 50px;
+    width: 50px;
+}

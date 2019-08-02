@@ -19,23 +19,25 @@ import os
 import spotipy
 from spotipy import util
 from spotipy import oauth2
+import secret
 
 # declare global vars for use later
-songs = []
+gblTopTracks = []
+gblRecent = []
 albums = []
 
 def get_songs(token):
-    songs = []
+    gblTopTracks = []
     sp = spotipy.Spotify(auth=token)
     top_tracks = sp.current_user_top_tracks(limit=10, time_range='long_term')
     for item in top_tracks['items']:
         song_length = sp.track(item['uri'][-22:])['duration_ms']
         song_length = round(song_length/60000, 2)
-        songs += [{'name': item['name'], 'artists': item['artists'][0]['name'], 'album_title': item['album']['name'], 'song_length': song_length}]
-    return songs
+        gblTopTracks += [{'name': item['name'], 'artists': item['artists'][0]['name'], 'album_title': item['album']['name'], 'song_length': song_length}]
+    return gblTopTracks
 
 def get_token(current_url):
-    sp_oauth = oauth2.SpotifyOAuth('d1043c275ddc4f64a60b2438db8ef839', 'fe8389b1944e44199785a6607fc68da4', 'https://new-statify-app.appspot.com/profile', scope='user-top-read')
+    sp_oauth = oauth2.SpotifyOAuth(secret.CLIENT_ID, secret.CLIENT_SECRET, secret.REDIRECT_URI, scope='user-top-read')
     code = sp_oauth.parse_response_code(current_url)
     access_token = sp_oauth.get_access_token(code)
     return access_token
@@ -54,7 +56,7 @@ class LoginPage(webapp2.RequestHandler):
         login_template = the_jinja_env.get_template('templates/login.html')
         # mutian url: https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3Dd1043c275ddc4f64a60b2438db8ef839%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fnew-statify-app.appspot.com%252Fprofile%26scope%3Duser-top-read
         # alex url: https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3D6e1c71fa7d494c1db9a1e02dff1351ef%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fstatify-app.appspot.com%252Fprofile%26scope%3Duser-top-read
-        token_url = "https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3Dd1043c275ddc4f64a60b2438db8ef839%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fnew-statify-app.appspot.com%252Fprofile%26scope%3Duser-top-read"
+        token_url = "https://accounts.spotify.com/en/login?continue=https:%2F%2Faccounts.spotify.com%2Fauthorize%3Fclient_id%3D6e1c71fa7d494c1db9a1e02dff1351ef%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fstatify-app.appspot.com%252Fprofile%26scope%3Duser-top-read"
         # self.request.url gets current url
         new_dict = {'token_url': token_url}
         self.response.write(login_template.render(new_dict))  # the response
@@ -64,13 +66,13 @@ class LoginPage(webapp2.RequestHandler):
 
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
-        global songs
+        global gblTopTracks
         profile_template = the_jinja_env.get_template('templates/profile.html')
 
         current_url = self.request.url
         token = get_token(current_url)
-        songs = get_songs(token)
-        new_dict = {'songs': songs}
+        gblTopTracks = get_songs(token)
+        new_dict = {'songs': gblTopTracks}
 
         self.response.write(profile_template.render(new_dict)) # the response
 
@@ -87,24 +89,31 @@ class ArtistsPage(webapp2.RequestHandler):
 
 class TracksPage(webapp2.RequestHandler):
     def get(self):
+        global gblTopTracks
+        topTracks = {}
+        for i in range(len(gblTopTracks)):
+            topTracks["song{}".format(i+1)] = gblTopTracks[i]['name']
+            topTracks["artist{}".format(i+1)] = gblTopTracks[i]['artists']
+            topTracks["album{}".format(i+1)] = gblTopTracks[i]['album_title']
+
         tracks_template = the_jinja_env.get_template('templates/tracks.html')
-        self.response.write(tracks_template.render())  # the response
+        self.response.write(tracks_template.render(topTracks))  # the response
 
     def post(self):
         pass
     
 class RecentPage(webapp2.RequestHandler):
     def get(self):
-        global songs
-        new_dict = {}
-        for i in range(len(songs)):
-            new_dict["song{}".format(i+1)] = songs[i]['name']
-            new_dict["artist{}".format(i+1)] = songs[i]['artists']
-            new_dict["album{}".format(i+1)] = songs[i]['album_title']
+        global gblRecent
+        recent = {}
+        for i in range(len(gblRecent)):
+            recent["song{}".format(i+1)] = gblRecent[i]['name']
+            recent["artist{}".format(i+1)] = gblRecent[i]['artists']
+            recent["album{}".format(i+1)] = gblRecent[i]['album_title']
 
         recent_template = the_jinja_env.get_template('templates/recent.html')
 
-        self.response.write(recent_template.render(new_dict))  # the response
+        self.response.write(recent_template.render(recent))  # the response
 
     def post(self):
         pass
@@ -132,23 +141,7 @@ class ContactPage(webapp2.RequestHandler):
 
     def post(self):
         pass
-
-class PrivacyPage(webapp2.RequestHandler):
-    def get(self):
-        privacy_template = the_jinja_env.get_template('templates/privacy.html')
-        self.response.write(privacy_template.render())  # the response
-
-    def post(self):
-        pass
-
-class OSLPage(webapp2.RequestHandler):
-    def get(self):
-        osl_template = the_jinja_env.get_template('templates/osl.html')
-        self.response.write(osl_template.render())  # the response
-
-    def post(self):
-        pass
-
+        
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
     ('/profile', ProfilePage),
@@ -157,7 +150,5 @@ app = webapp2.WSGIApplication([
     ('/recent', RecentPage),
     ('/playlists', PlaylistsPage),
     ('/features', FeaturesPage),
-    ('/contact', ContactPage),
-    ('/privacy', PrivacyPage),
-    ('/osl', OSLPage)
+    ('/contact', ContactPage)
 ], debug=True)
