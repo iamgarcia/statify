@@ -75,12 +75,238 @@
         <div class="logo-container">
             <a class="logo" href="https://github.com/djauxel/statify" class="brand-logo">
                 <svg style="width:60px;height:60px" viewBox="0 0 24 24">
-                    <path fill="#1DB954" d="M20.38,8.53C20.54,8.13 21.06,6.54 20.21,4.39C20.21,4.39 18.9,4 15.91,6C14.66,5.67 13.33,5.62 12,5.62C10.68,5.62 9.34,5.67 8.09,6C5.1,3.97 3.79,4.39 3.79,4.39C2.94,6.54 3.46,8.13 3.63,8.53C2.61,9.62 2,11 2,12.72C2,19.16 6.16,20.61 12,20.61C17.79,20.61 22,19.16 22,12.72C22,11 21.39,9.62 20.38,8.53M12,19.38C7.88,19.38 4.53,19.19 4.53,15.19C4.53,14.24 5,13.34 5.8,12.61C7.14,11.38 9.43,12.03 12,12.03C14.59,12.03 16.85,11.38 18.2,12.61C19,13.34 19.5,14.23 19.5,15.19C19.5,19.18 16.13,19.38 12,19.38M8.86,13.12C8.04,13.12 7.36,14.12 7.36,15.34C7.36,16.57 8.04,17.58 8.86,17.58C9.69,17.58 10.36,16.58 10.36,15.34C10.36,14.11 9.69,13.12 8.86,13.12M15.14,13.12C14.31,13.12 13.64,14.11 13.64,15.34C13.64,16.58 14.31,17.58 15.14,17.58C15.96,17.58 16.64,16.58 16.64,15.34C16.64,14.11 16,13.12 15.14,13.12Z" />
+                    <path fill="#1DB954"
+                        d="M20.38,8.53C20.54,8.13 21.06,6.54 20.21,4.39C20.21,4.39 18.9,4 15.91,6C14.66,5.67 13.33,5.62 12,5.62C10.68,5.62 9.34,5.67 8.09,6C5.1,3.97 3.79,4.39 3.79,4.39C2.94,6.54 3.46,8.13 3.63,8.53C2.61,9.62 2,11 2,12.72C2,19.16 6.16,20.61 12,20.61C17.79,20.61 22,19.16 22,12.72C22,11 21.39,9.62 20.38,8.53M12,19.38C7.88,19.38 4.53,19.19 4.53,15.19C4.53,14.24 5,13.34 5.8,12.61C7.14,11.38 9.43,12.03 12,12.03C14.59,12.03 16.85,11.38 18.2,12.61C19,13.34 19.5,14.23 19.5,15.19C19.5,19.18 16.13,19.38 12,19.38M8.86,13.12C8.04,13.12 7.36,14.12 7.36,15.34C7.36,16.57 8.04,17.58 8.86,17.58C9.69,17.58 10.36,16.58 10.36,15.34C10.36,14.11 9.69,13.12 8.86,13.12M15.14,13.12C14.31,13.12 13.64,14.11 13.64,15.34C13.64,16.58 14.31,17.58 15.14,17.58C15.96,17.58 16.64,16.58 16.64,15.34C16.64,14.11 16,13.12 15.14,13.12Z" />
                 </svg>
             </a>
         </div>
     </div>
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons icon-green">menu</i></a>
+
+    <div class="container">
+        <h4 class="recent-header">Top Tracks</h4>
+        <ul class="recent-container">
+            <li>
+                <a href="https://www.spotify.com/us/" id="track1">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/8d359f0317586fbdd8f69b2c2a53c5f1f7407519">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song1}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist1}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album1}}</p>
+                        </div>
+                        <!-- <div class="track-duration">
+                            <p>3:29</p>
+                        </div> -->
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track2">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/3808ae656af59ff71ebe72522c09952421b2b072">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song2}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist2}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album2}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track3">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/7079cfcb61dc10c9ecdbf712150e695d5fcc9c8a">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song3}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist3}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album3}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track4">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/7ef38a323e4e0da685c4cbaea3f11209412618ba">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song4}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist4}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album4}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track5">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/1303a4983893e04c6b872db5f2983376f86085c8">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song5}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist5}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album5}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track6">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/f2889e961cb83daf69ed864198a87f6040e3880c">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song6}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist6}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album6}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track7">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/e86238dfd6a61b5dd72ee0f7a74d9e315bf94dca">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song7}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist7}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album7}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track8">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/6c55fd3c20b3d6172eb1079f5362fc3af2cdc346">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song8}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist8}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album8}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track9">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/e938ed31f796f0cb76ca5339a11b7c349388f950">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song9}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist9}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album9}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track10">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/fcf57876a0752c5093dde01ad1dbed2600be2742">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song10}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist10}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album10}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track10">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/bda43e8eb268b9e5b2694425a6f7388fa40bffaa">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song11}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist11}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album11}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.spotify.com/us/" id="track10">
+                    <div class="track-container">
+                        <div class="track-artwork">
+                            <!-- <img class="album-art" src="https://via.placeholder.com/50"> -->
+                            <img class="album-art"
+                                src="https://i.scdn.co/image/74530c2b2c3e1f47337b7e9070ff62472e30bbab">
+                        </div>
+                        <div class="track-meta">
+                            <p class="meta-track-title">{{song12}}</p>
+                            <br>
+                            <p class="meta-album-artist">{{artist12}}</p>
+                            <p class="meta-dot">&bull;</p>
+                            <p class="meta-album-title">{{album12}}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <!--JavaScript at end of body for optimized loading-->
     <script src="../js/materialize.min.js"></script>
